@@ -1,0 +1,48 @@
+Angular Imgur Uploader
+======================
+
+Upload images to imgur easily!
+
+
+### Installation
+
+* add source files
+
+```html
+<script src="bower_components/angular-imgur-uploader/src/imgur-uploader.js"></script>
+<script src="bower_components/angular-imgur-uploader/src/util.js"></script>
+```
+
+* inject `imgurUploader` module as a dependency
+
+```javascript
+app = angular.module('myApp', ['imgurUploader']);
+```
+
+* configure `imgurProvider` with your Client ID
+
+```javascript
+app.config(function(imgurProvider) {
+    imgurProvider.setClientId('myClientID');
+});
+```
+
+### Usage
+
+#### `imgur` service
+
+Upload a file object (*it is converted to base-64 first; useful for file inputs in forms*)
+
+```javascript
+app.run(function(imgur) {
+    imgur.uploadBase64(myImage, imageTitle);
+});
+```
+
+Upload any file type
+
+```javascript
+app.run(function(imgur) {
+    imgur.upload(myImage, imageTitle, fileType);
+});
+```
