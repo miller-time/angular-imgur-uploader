@@ -1,0 +1,19 @@
+{
+  "name": "angular-imgur-uploader",
+  "authors": [
+    "Russell <miller.time.baby@gmail.com>"
+  ],
+  "description": "\"Upload images to imgur\"",
+  "main": "",
+  "license": "MIT",
+  "homepage": "http://github.com/miller-time/angular-imgur-uploader",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "dependencies": {
+    "angular": ">=1.2"
+  }
+}
