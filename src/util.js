@@ -19,16 +19,16 @@
 
             var reader = new FileReader();
 
-            reader.onload = function() {
+            reader.addEventListener('load', function() {
                 var arrayBuffer = reader.result;
                 $log.debug('[imgur] converting file to base-64...');
                 var base64Str = arrayBufferToBase64String(arrayBuffer);
                 deferred.resolve(base64Str);
-            };
+            });
 
-            reader.onerror = function() {
+            reader.addEventListener('error', function() {
                 deferred.reject();
-            };
+            });
 
             $log.debug('[imgur] reading file...');
             reader.readAsArrayBuffer(image);
