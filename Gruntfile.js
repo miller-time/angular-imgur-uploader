@@ -13,6 +13,10 @@
                 js: {
                     files: ['src/**/*.js'],
                     tasks: ['build']
+                },
+                test: {
+                    files: ['src/**/*.js', 'test/**/*.js'],
+                    tasks: ['karma']
                 }
             },
 
@@ -74,6 +78,22 @@
                             src: ['dist/.tmp']
                         }
                     ]
+                }
+            },
+
+            karma: {
+                unit: {
+                    options: {
+                        files: [
+                            'bower_components/angular/angular.min.js',
+                            'bower_components/angular-mocks/angular-mocks.js',
+                            'dist/imgur-uploader.js',
+                            'test/**/*.js'
+                        ],
+                        singleRun: true,
+                        browsers: ['PhantomJS'],
+                        frameworks: ['jasmine']
+                    }
                 }
             }
 
