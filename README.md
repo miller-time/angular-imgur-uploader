@@ -6,11 +6,10 @@ Upload images to imgur easily!
 
 ### Installation
 
-* add source files
+* add script to your page
 
 ```html
-<script src="bower_components/angular-imgur-uploader/src/imgur-uploader.js"></script>
-<script src="bower_components/angular-imgur-uploader/src/util.js"></script>
+<script src="bower_components/angular-imgur-uploader/dist/imgur-uploader.min.js"></script>
 ```
 
 * inject `imgurUploader` module as a dependency
