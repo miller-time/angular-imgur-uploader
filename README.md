@@ -46,3 +46,16 @@ app.run(function(imgur) {
     imgur.upload(myImage, imageTitle, fileType);
 });
 ```
+
+### Development
+
+First time setup:
+
+```
+$ npm install
+$ bower install
+$ grunt
+```
+
+This will install the project dependencies and start `grunt watch`, which automatically
+rebuilds (in the "dist" directory) and runs tests as you make edits.
