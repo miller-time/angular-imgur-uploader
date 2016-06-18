@@ -30,7 +30,7 @@ describe('imgurUploader.util', function() {
     it('should read a file and return a base-64 string', function() {
         var file = new Blob(['b64 image']);
 
-        fileReaderUtil(file).then(function(base64Str) {
+        fileReaderUtil.readBase64Str(file).then(function(base64Str) {
             result = base64Str;
         });
 

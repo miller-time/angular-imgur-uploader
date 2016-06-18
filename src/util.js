@@ -13,8 +13,8 @@
         return btoa(binary);
     };
 
-    app.factory('fileReaderUtil', function($log, $q) {
-        return function(image) {
+    app.service('fileReaderUtil', function($log, $q) {
+        this.readBase64Str = function(image) {
             var deferred = $q.defer();
 
             var reader = new FileReader();

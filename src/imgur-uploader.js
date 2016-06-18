@@ -34,7 +34,7 @@
             };
 
             var uploadBase64 = function(image, title) {
-                return fileReaderUtil(image).then(function(base64imageData) {
+                return fileReaderUtil.readBase64Str(image).then(function(base64imageData) {
                     return upload(base64imageData, title, 'base64');
                 });
             };
