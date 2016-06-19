@@ -28,6 +28,28 @@
         } ], this.setClientId = function(imgurClientId) {
             clientId = imgurClientId;
         };
+    }), app.directive("imgurUploaderFileInput", function() {
+        return {
+            restrict: "EA",
+            scope: {
+                inputClass: "@",
+                uploaderConfig: "="
+            },
+            controller: [ "$scope", "imgur", function($scope, imgur) {
+                $scope.submit = function(description) {
+                    return imgur.uploadBase64($scope.getFile(), description);
+                };
+            } ],
+            link: function(scope, element) {
+                scope.getFile = function() {
+                    return element.find("input")[0].files && element.find("input")[0].files[0];
+                }, scope.uploaderConfig.onReady && "function" == typeof scope.uploaderConfig.onReady && scope.uploaderConfig.onReady({
+                    getFile: scope.getFile,
+                    submit: scope.submit
+                });
+            },
+            template: '<input type="file" ng-class="inputClass">'
+        };
     });
 })(), function() {
     "use strict";
