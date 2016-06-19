@@ -8,4 +8,4 @@ $ npm install -g http-server
 $ http-server
 ```
 
-The default URL for `http-server` is http://localhost:8080
+The default URL for `http-server` is [http://localhost:8080/examples/](http://localhost:8080/examples/)
