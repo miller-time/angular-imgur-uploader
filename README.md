@@ -3,6 +3,7 @@ Angular Imgur Uploader
 
 Upload images to imgur easily!
 
+[![Build Status](https://travis-ci.org/miller-time/angular-image-uploader.svg?branch=master)](https://travis-ci.org/miller-time/angular-image-uploader)
 
 ### Installation
 
