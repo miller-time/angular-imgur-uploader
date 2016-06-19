@@ -1,0 +1,36 @@
+<div ng-controller="FileInputExampleCtrl">
+    <div ng-show="mode.upload" class="col-lg-4 col-md-4 col-sm-6">
+        <form>
+            <div class="form-group">
+                <label>Image</label>
+                <imgur-uploader-file-input
+                    input-class="form-control"
+                    uploader-config="uploaderConfig">
+                </imgur-uploader-file-input>
+            </div>
+
+            <button class="btn btn-primary" ng-click="getFileInfo()">
+                File Info
+            </button>
+        </form>
+    </div>
+
+    <div ng-show="!mode.upload">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Last Modified</th>
+            </tr>
+            <tr>
+                <td>{{image.fileInfo.name}}</td>
+                <td>{{image.fileInfo.size | bytes}}</td>
+                <td>{{image.fileInfo.lastModifiedDate | date}}</td>
+            </tr>
+        </table>
+
+        <button class="btn btn-warning" ng-click="mode.upload = true">
+            New File
+        </button>
+    </div>
+</div>

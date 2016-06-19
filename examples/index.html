@@ -12,6 +12,7 @@
 
     <script src="/examples/example-util.js"></script>
     <script src="/examples/uploader/uploader.js"></script>
+    <script src="/examples/file-input/file-input.js"></script>
     <script>
     angular.module('exampleApp')
         .controller('ExamplesListCtrl', function($scope) {
@@ -19,6 +20,10 @@
                 {
                     title: 'Image Upload App',
                     id: 'uploader'
+                },
+                {
+                    title: 'File Input Helper',
+                    id: 'file-input'
                 }
             ];
         });
@@ -30,6 +35,8 @@
 
         <div ng-repeat="example in examples">
             <example config="example"></example>
+
+            <hr ng-if="!$last">
         </div>
 
     </div>
