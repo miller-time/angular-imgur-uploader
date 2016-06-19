@@ -50,4 +50,32 @@
         };
     });
 
+    app.directive('imgurUploaderFileInput', function() {
+        return {
+            restrict: 'EA',
+            scope: {
+                inputClass: '@',
+                uploaderConfig: '='
+            },
+            controller: function($scope, imgur) {
+                $scope.submit = function(description) {
+                    return imgur.uploadBase64($scope.getFile(), description);
+                };
+            },
+            link: function(scope, element) {
+                scope.getFile = function() {
+                    return element.find('input')[0].files && element.find('input')[0].files[0];
+                }
+
+                if (scope.uploaderConfig.onReady && typeof(scope.uploaderConfig.onReady) === 'function') {
+                    scope.uploaderConfig.onReady({
+                        getFile: scope.getFile,
+                        submit: scope.submit
+                    });
+                }
+            },
+            template: '<input type="file" ng-class="inputClass">'
+        }
+    })
+
 })();

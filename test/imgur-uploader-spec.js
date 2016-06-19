@@ -89,3 +89,55 @@ describe('imgurUploader imgur service', function() {
     });
 
 });
+
+describe('imgurUploaderFileInput directive', function() {
+
+    var $rootScope,
+        element,
+        imgur,
+        uploaderApi;
+
+    beforeEach(module('imgurUploader', function(imgurProvider) {
+        imgurProvider.setClientId('testClientId');
+    }));
+
+    beforeEach(inject(function($compile, _$rootScope_, _imgur_) {
+        $rootScope = _$rootScope_;
+        imgur = _imgur_;
+
+        $rootScope.testConfig = {
+            onReady: jasmine.createSpy('onReady').and.callFake(function(api) {
+                uploaderApi = api;
+            })
+        };
+
+        element = angular.element(
+            '<imgur-uploader-file-input ' +
+                'uploader-config="testConfig">' +
+            '</imgur-uploader-file-input>'
+        );
+
+        $compile(element)($rootScope);
+        $rootScope.$digest();
+    }));
+
+    it('should have one input element', function() {
+        expect(element.find('input').length).toBe(1);
+    });
+
+    it('should call the onReady function and pass its api', function() {
+        expect($rootScope.testConfig.onReady).toHaveBeenCalled();
+        expect(typeof(uploaderApi.getFile)).toEqual('function');
+        expect(typeof(uploaderApi.submit)).toEqual('function');
+    });
+
+    it('should use the imgur service to submit uploads', function() {
+        spyOn(element.isolateScope(), 'getFile').and.returnValue('foo');
+        spyOn(imgur, 'uploadBase64');
+
+        uploaderApi.submit('bar');
+
+        expect(imgur.uploadBase64).toHaveBeenCalledWith('foo', 'bar');
+    });
+
+});
