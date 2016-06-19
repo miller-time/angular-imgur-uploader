@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <title>Examples - Angular Imgur Uploader</title>
+
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/dist/imgur-uploader.min.js"></script>
+
+    <script src="/examples/ui-bootstrap-tpls-1.3.3.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <script src="/examples/example-util.js"></script>
+    <script src="/examples/uploader/uploader.js"></script>
+    <script>
+    angular.module('exampleApp')
+        .controller('ExamplesListCtrl', function($scope) {
+            $scope.examples = [
+                {
+                    title: 'Image Upload App',
+                    id: 'uploader'
+                }
+            ];
+        });
+    </script>
+</head>
+<body ng-app="exampleApp">
+
+    <div ng-controller="ExamplesListCtrl" class="container">
+
+        <div ng-repeat="example in examples">
+            <example config="example"></example>
+        </div>
+
+    </div>
+
+</body>
+</html>
