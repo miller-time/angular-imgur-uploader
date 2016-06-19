@@ -21,7 +21,7 @@ Upload images to imgur easily!
 app = angular.module('myApp', ['imgurUploader']);
 ```
 
-* configure `imgurProvider` with your Client ID
+* configure `imgurProvider` with your Client ID (go [here](http://api.imgur.com/#registerapp) to create one)
 
 ```javascript
 app.config(function(imgurProvider) {
