@@ -5,7 +5,7 @@ Upload images to imgur easily!
 
 [![Build Status](https://travis-ci.org/miller-time/angular-image-uploader.svg?branch=master)](https://travis-ci.org/miller-time/angular-image-uploader)
 
-<img src="http://benschwarz.github.io/bower-badges/badge@2x.png?pkgname=angular-imgur-uploader" width="130" height="30">
+<img src="http://benschwarz.github.io/bower-badges/badge@2x.png?pkgname=angular-imgur-uploader" width="130" height="30" title="bower install angular-imgur-uploader">
 
 ### Installation
 
