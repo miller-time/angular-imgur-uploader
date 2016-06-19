@@ -28,23 +28,7 @@ app.config(function(imgurProvider) {
 
 ### Usage
 
-#### `imgur` service
-
-Upload a file object (*it is converted to base-64 first; useful for file inputs in forms*)
-
-```javascript
-app.run(function(imgur) {
-    imgur.uploadBase64(myImage, imageTitle);
-});
-```
-
-Upload any file type
-
-```javascript
-app.run(function(imgur) {
-    imgur.upload(myImage, imageTitle, fileType);
-});
-```
+See [examples](examples/README.md) page.
 
 ### Development
 
