@@ -76,6 +76,62 @@
             },
             template: '<input type="file" ng-class="inputClass">'
         }
-    })
+    });
+
+    app.directive('imgurUploaderForm', function() {
+        return {
+            restrict: 'EA',
+            scope: {
+                formClass: '@',
+                inputClass: '@',
+                inputContainerClass: '@',
+                submitClass: '@',
+                descriptionLabel: '@',
+                imageLabel: '@',
+                submitLabel: '@',
+                onSubmit: '&'
+            },
+            controller: function($scope, imgur) {
+                $scope.formClass = $scope.formClass || '';
+                $scope.inputClass = $scope.inputClass || '';
+                $scope.inputContainerClass = $scope.inputContainerClass || '';
+                $scope.descriptionLabel = angular.isDefined($scope.descriptionLabel) ? $scope.descriptionLabel : 'Description';
+                $scope.imageLabel = angular.isDefined($scope.imageLabel) ? $scope.imageLabel : 'Image';
+                $scope.submitLabel = $scope.submitLabel || 'Upload';
+
+                $scope.form = {description: ''};
+
+                $scope.uploaderConfig = {
+                    onReady: function(uploaderApi) {
+                        $scope.uploaderApi = uploaderApi;
+                    }
+                };
+
+                $scope.upload = function() {
+                    if ($scope.uploaderApi && $scope.uploaderApi.getFile()) {
+                        var uploadPromise = $scope.uploaderApi.submit($scope.form.description);
+                        if ($scope.onSubmit) {
+                            $scope.onSubmit({uploadPromise: uploadPromise});
+                        }
+                    }
+                };
+            },
+            template: '<form ng-class="formClass">' +
+                    '<div ng-class="inputContainerClass">' +
+                        '<label>{{descriptionLabel}}</label>' +
+                        '<input type="text" ng-model="form.description" ng-class="inputClass">' +
+                    '</div>' +
+                    '<div ng-class="inputContainerClass">' +
+                        '<label>{{imageLabel}}</label>' +
+                        '<imgur-uploader-file-input input-class="{{inputClass}}" ' +
+                            'uploader-config="uploaderConfig">' +
+                        '</imgur-uploader-file-input>' +
+                    '</div>' +
+                    '<button ng-class="submitClass" ng-click="upload()">' +
+                        '{{submitLabel}}' +
+                    '</button>' +
+                '</form>'
+        };
+    });
 
 })();
