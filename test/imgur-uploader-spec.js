@@ -141,3 +141,48 @@ describe('imgurUploaderFileInput directive', function() {
     });
 
 });
+
+describe('imgurUploaderForm directive', function() {
+
+    var $rootScope,
+        element;
+
+    beforeEach(module('imgurUploader', function(imgurProvider) {
+        imgurProvider.setClientId('testClientId');
+    }));
+
+    beforeEach(inject(function($compile, _$rootScope_) {
+        $rootScope = _$rootScope_;
+
+        $rootScope.onSubmit = function(uploadPromise) {
+            $rootScope.submitPromise = uploadPromise;
+        };
+
+        element = angular.element(
+            '<imgur-uploader-form ' +
+                'on-submit="onSubmit(uploadPromise)">' +
+            '</imgur-uploader-form>'
+        );
+
+        $compile(element)($rootScope);
+        $rootScope.$digest();
+    }));
+
+    it('should link up to the uploader api', function() {
+        expect(element.isolateScope().uploaderApi).toBeDefined();
+    });
+
+    it('should upload via the api and trigger its onSubmit method', function() {
+        spyOn(element.isolateScope().uploaderApi, 'getFile').and.returnValue('foo');
+        spyOn(element.isolateScope().uploaderApi, 'submit').and.returnValue('submitPromise');
+        spyOn(element.isolateScope(), 'onSubmit');
+
+        element.isolateScope().form.description = 'bar';
+
+        element.isolateScope().upload();
+
+        expect(element.isolateScope().uploaderApi.submit).toHaveBeenCalledWith('bar');
+        expect(element.isolateScope().onSubmit).toHaveBeenCalledWith({uploadPromise: 'submitPromise'});
+    });
+
+});
