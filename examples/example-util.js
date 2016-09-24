@@ -19,17 +19,17 @@ var exampleApp = angular.module('exampleApp', ['ui.bootstrap', 'imgurUploader'])
             scope: {
                 config: '='
             },
-            controller: function($scope, $http, $timeout) {
+            controller: function($scope, $http, $sce, $timeout, $window) {
                 $scope.config.template = '/examples/' + $scope.config.id + '/' + $scope.config.id + '.html';
                 $scope.config.script = '/examples/' + $scope.config.id + '/' + $scope.config.id + '.js';
 
                 $http.get($scope.config.template, {cache: true}).then(function(response) {
-                    $timeout(function() {
-                        $scope.config.html = response.data;
-                    });
+                    $scope.config.html = $sce.trustAsHtml(response.data);
+                    $timeout($window.Prism.highlightAll, 100);
                 });
                 $http.get($scope.config.script, {cache: true}).then(function(response) {
-                    $scope.config.js = response.data;
+                    $scope.config.js = $sce.trustAsHtml(response.data);
+                    $timeout($window.Prism.highlightAll, 100);
                 });
             },
             template: '<div class="well">' +
@@ -39,10 +39,14 @@ var exampleApp = angular.module('exampleApp', ['ui.bootstrap', 'imgurUploader'])
                 '<div class="row">' +
                     '<uib-tabset>' +
                         '<uib-tab heading="HTML">' +
-                            '<pre ng-bind="config.html"></pre>' +
+                            '<pre>' +
+                                '<code class="language-markup" ng-bind="config.html">{{config.html}}</code>' +
+                            '</pre>' +
                         '</uib-tab>' +
                         '<uib-tab heading="JS">' +
-                            '<pre ng-bind="config.js"></pre>' +
+                            '<pre>' +
+                                '<code class="language-javascript" ng-bind-html="config.js"></code>' +
+                            '</pre>' +
                         '</uib-tab>' +
                     '</uib-tabset>' +
                 '</div>'
