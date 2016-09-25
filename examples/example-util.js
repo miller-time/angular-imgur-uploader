@@ -20,32 +20,35 @@ var exampleApp = angular.module('exampleApp', ['ui.bootstrap', 'imgurUploader'])
                 config: '='
             },
             controller: function($scope, $http, $sce, $timeout, $window) {
-                $scope.config.template = '/examples/' + $scope.config.id + '/' + $scope.config.id + '.html';
-                $scope.config.script = '/examples/' + $scope.config.id + '/' + $scope.config.id + '.js';
+                $scope.config.includes = $scope.config.includes || {};
 
-                $http.get($scope.config.template, {cache: true}).then(function(response) {
-                    $scope.config.html = $sce.trustAsHtml(response.data);
-                    $timeout($window.Prism.highlightAll, 100);
-                });
-                $http.get($scope.config.script, {cache: true}).then(function(response) {
-                    $scope.config.js = $sce.trustAsHtml(response.data);
-                    $timeout($window.Prism.highlightAll, 100);
-                });
+                if ($scope.config.includes.app) {
+                    $http.get('/examples/' + $scope.config.includes.app, {cache: true}).then(function(response) {
+                        $scope.config.appContents = $sce.trustAsHtml(response.data);
+                        $timeout($window.Prism.highlightAll, 100);
+                    });
+                }
+                if ($scope.config.includes.template) {
+                    $http.get('/examples/' + $scope.config.includes.template, {cache: true}).then(function(response) {
+                        $scope.config.templateContents = $sce.trustAsHtml(response.data);
+                        $timeout($window.Prism.highlightAll, 100);
+                    });
+                }
             },
             template: '<div class="well">' +
                     '<h1>{{config.title}}</h1>' +
                 '</div>' +
-                '<div ng-include="config.template" class="row" style="margin-bottom:15px"></div>' +
+                '<div ng-include="config.includes.template" class="row" style="margin-bottom:15px"></div>' +
                 '<div class="row">' +
                     '<uib-tabset>' +
                         '<uib-tab heading="HTML">' +
                             '<pre>' +
-                                '<code class="language-markup" ng-bind="config.html">{{config.html}}</code>' +
+                                '<code class="language-markup" ng-bind="config.templateContents"></code>' +
                             '</pre>' +
                         '</uib-tab>' +
                         '<uib-tab heading="JS">' +
                             '<pre>' +
-                                '<code class="language-javascript" ng-bind-html="config.js"></code>' +
+                                '<code class="language-javascript" ng-bind-html="config.appContents"></code>' +
                             '</pre>' +
                         '</uib-tab>' +
                     '</uib-tabset>' +

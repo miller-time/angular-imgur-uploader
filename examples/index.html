@@ -24,11 +24,17 @@
             $scope.examples = [
                 {
                     title: 'Upload Form',
-                    id: 'uploader'
+                    includes: {
+                        app: 'uploader/uploader.js',
+                        template: 'uploader/uploader.html'
+                    }
                 },
                 {
                     title: 'File Input Helper',
-                    id: 'file-input'
+                    includes: {
+                        app: 'file-input/file-input.js',
+                        template: 'file-input/file-input.html'
+                    }
                 }
             ];
         });
