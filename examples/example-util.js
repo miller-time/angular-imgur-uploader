@@ -35,11 +35,15 @@ var exampleApp = angular.module('exampleApp', ['ui.bootstrap', 'imgurUploader'])
                     });
                 }
             },
-            template: '<div class="well">' +
+            template: '<div class="row">' +
                     '<h1>{{config.title}}</h1>' +
                 '</div>' +
-                '<div ng-include="config.includes.template" class="row" style="margin-bottom:15px"></div>' +
-                '<div class="row">' +
+                '<div class="row panel panel-default">' +
+                    '<div class="example-template panel-body" ng-if="config.includes.template" ' +
+                        'ng-include="config.includes.template" class="row" style="margin-bottom:15px">' +
+                    '</div>' +
+                '</div>' +
+                '<div class="example-code" row">' +
                     '<uib-tabset>' +
                         '<uib-tab heading="HTML">' +
                             '<pre>' +
