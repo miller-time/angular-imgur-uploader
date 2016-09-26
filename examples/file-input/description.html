@@ -1,0 +1,20 @@
+<p>
+    This is the <code>&lt;imgur-uploader-file-input&gt;</code> component.
+    If you just want to add a file input (that has imgur uploading
+    capabilities) to an existing page or form, then this is the way to go.
+</p>
+<h5>Options</h5>
+<ul>
+    <li><b>inputClass</b> (@): set a class on the input element</li>
+    <li>
+        <b>uploaderConfig</b> (Object):
+        A scope Object with an <code>onReady</code> method that takes
+        an <code>uploaderApi</code> argument. The <code>uploaderApi</code>
+        can then be used to interact with the file that is selected.
+        The <code>uploaderApi</code> has the following methods:
+        <ul>
+            <li><b>getFile</b>: return file info about the selected file</li>
+            <li><b>submit</b>: upload the selected file to imgur</li>
+        </ul>
+    </li>
+</ul>

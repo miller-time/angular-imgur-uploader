@@ -37,6 +37,9 @@ var exampleApp = angular.module('exampleApp', ['ui.bootstrap', 'imgurUploader'])
             },
             template: '<div class="row">' +
                     '<h1>{{config.title}}</h1>' +
+                    '<div class="example-description" ng-if="config.includes.description">' +
+                        '<div ng-include="\'/examples/\' + config.includes.description"></div>' +
+                    '</div>' +
                 '</div>' +
                 '<div class="row panel panel-default">' +
                     '<div class="example-template panel-body" ng-if="config.includes.template" ' +

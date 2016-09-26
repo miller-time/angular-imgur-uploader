@@ -1,0 +1,21 @@
+<p>
+    This is the <code>&lt;imgur-uploader-form&gt;</code> component.
+    If you just want to drop a form onto a page that is capable of
+    uploading an image with a description, this is the easiest way
+    to do it.
+</p>
+<h5>Options</h5>
+<ul>
+    <li><b>formClass</b> (String): set a class on the form element</li>
+    <li><b>inputClass</b> (String): set a class on the input elements</li>
+    <li><b>inputContainerClass</b> (String): set a class on the inputs' container elements</li>
+    <li><b>submitClass</b> (String): set a class on the submit button</li>
+    <li><b>descriptionLabel</b> (String): label for description input (default: "Description")</li>
+    <li><b>imageLabel</b> (String): label for file input (default: "Image")</li>
+    <li><b>submitLabel</b> (String): label for submit button (default: "Upload")</li>
+    <li>
+        <b>onSubmit</b> (Function):
+        called when form is submitted, takes an <code>uploadPromise</code>
+        argument which resolves to the response of the submission request
+    </li>
+</ul>
