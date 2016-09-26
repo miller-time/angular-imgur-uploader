@@ -9,6 +9,12 @@ Upload images to imgur easily!
 
 ### Installation
 
+* install with bower
+
+```sh
+bower install angular-imgur-uploader
+```
+
 * add script to your page
 
 ```html
