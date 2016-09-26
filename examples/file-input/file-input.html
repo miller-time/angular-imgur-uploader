@@ -9,7 +9,10 @@
                 </imgur-uploader-file-input>
             </div>
 
-            <button class="btn btn-primary" ng-click="getFileInfo()">
+            <button class="btn btn-primary" ng-click="getFileInfo()"
+                uib-tooltip="Display results of uploaderApi.getFile()"
+                tooltip-popup-delay="500"
+                tooltip-placement="right">
                 File Info
             </button>
         </form>
@@ -29,7 +32,10 @@
             </tr>
         </table>
 
-        <button class="btn btn-warning" ng-click="mode.upload = true">
+        <button class="btn btn-warning" ng-click="mode.upload = true"
+            uib-tooltip="Select a different file"
+            tooltip-popup-delay="500"
+            tooltip-placement="right">
             New File
         </button>
     </div>
